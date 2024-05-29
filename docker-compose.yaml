@@ -1,0 +1,122 @@
+version: '3.7'
+
+services :
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=karthikeyan
+      - POSTGRES_PASSWORD=1920
+      - POSTGRES_DB=communify_auth
+    ports:
+      - "5432:5432"
+
+  dbchat:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=karthikeyan
+      - POSTGRES_PASSWORD=1920
+      - POSTGRES_DB=communify_chat
+    ports:
+      - "5434:5432"
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+
+  authentication:
+    volumes:
+      - static_authentication:/static
+    env_file:
+      - .env
+    build:
+      context: ./Backend/authentication
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  daphne:
+      build:
+        context: ./Backend/chat
+      image: "chat:latest"
+      ports:
+        - "8002:8002"
+      depends_on:
+        - redis
+        - dbchat
+      environment:
+        - DJANGO_SETTINGS_MODULE=chat.settings
+
+  chat:
+      volumes:
+        - static_chat:/static
+      env_file:
+        - .env
+      build:
+        context: ./Backend/chat
+      command: 'python -u consumer.py'
+      depends_on:
+        - redis
+        - dbchat
+
+
+
+
+
+
+  userside:
+    volumes:
+      - static_userside:/static
+    env_file:
+      - .env
+    build:
+      context: ./Backend/userside
+    ports:
+      - "8001:8001"
+
+
+  frontend:
+    build:
+      context: ./frontend/communfiy
+    volumes:
+      - frontend:/app/build
+    ports:
+      - "5173:5173"  
+
+
+  celery:
+    build: 
+      context: ./Backend/authentication
+      dockerfile: Docker/Celery/Dockerfile
+    depends_on:
+      - redis
+
+  nginx:
+    build:
+      context: ./Nginx
+    volumes:
+      - static_userside:/static_userside
+      - static_authentication:/static_authentication
+      - static_chat:/static_chat
+      - frontend:/var/www/frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - authentication
+      - daphne
+      - userside
+  
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    
+  
+
+volumes:
+  static_userside:
+  static_authentication:
+  static_chat:
+  frontend:
