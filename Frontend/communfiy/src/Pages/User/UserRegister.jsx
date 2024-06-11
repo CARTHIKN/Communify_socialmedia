@@ -6,7 +6,7 @@ import LoginNavbar from "./LoginNavbar";
 function UserRegister() {
   const [formError, setFormError] = useState({});
   const navigate = useNavigate();
-  const baseUrl = "http://127.0.0.1:8000";
+  const baseUrl = "https://communify.sneaker-street.online";
 
   const handleSubmit = async (event) => {
     event.preventDefault();

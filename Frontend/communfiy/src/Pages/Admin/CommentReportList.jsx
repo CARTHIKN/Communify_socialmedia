@@ -10,7 +10,7 @@ function CommentReportList() {
     useEffect(() => {
         const fetchReportedComments = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8001/api/home/admin/list-reported-comments/');
+                const response = await axios.get('https://communify.sneaker-street.online/api/home/admin/list-reported-comments/');
                 setReportedComments(response.data);
             } catch (error) {
                 console.error('Error fetching reported comments:', error);
@@ -31,7 +31,7 @@ function CommentReportList() {
 
     const confirmDelete = async () => {
         try {
-            await axios.delete(`http://127.0.0.1:8001/api/home/admin/list-reported-comments/${deleteCommentId}/delete/`);
+            await axios.delete(`https://communify.sneaker-street.online/api/home/admin/list-reported-comments/${deleteCommentId}/delete/`);
             setReportedComments(reportedComments.filter(comment => comment.comment_id !== deleteCommentId));
             setDeleteCommentId(null)
             setShowConfirmation(false)

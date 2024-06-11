@@ -15,7 +15,7 @@ function ChangeProfile() {
 
   const navigate = useNavigate()
   const dispatch = useDispatch();
-  const baseUrl = "http://127.0.0.1:8000";
+  const baseUrl = "https://communify.sneaker-street.online";
   const username = useSelector((state) => state.authentication_user.username);
   const handleImageChange = (event) => {
     

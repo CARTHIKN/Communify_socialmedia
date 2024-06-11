@@ -7,7 +7,7 @@ function PostView() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const baseUrl = 'http://127.0.0.1:8001';
+  const baseUrl = 'https://communify.sneaker-street.online';
 
   useEffect(() => {
     const fetchData = async () => {

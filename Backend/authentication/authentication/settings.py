@@ -36,6 +36,8 @@ ALLOWED_HOSTS = [
     'authentication:8000',
     'localhost:80',
     'localhost:5173',
+    'communify.sneaker-street.online',
+    '15.206.59.182'
 ]
 
 # Application definition
@@ -183,9 +185,13 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://authentication',
     'http://authentication:8000',
-
- 
+    'https://communify.sneaker-street.online',
+    'http://communify.sneaker-street.online',
+    'http://15.206.59.182',
+    'https://15.206.59.182'
 ]
+
+
 CORS_ALLOW_ALL_ORIGINS = True 
 # AUTHENTICATION_BACKENDS = [
 #     'verification.authentication.EmailOrUsernameModelBackend',

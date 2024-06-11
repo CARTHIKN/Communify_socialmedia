@@ -7,9 +7,9 @@
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState('');
     const [roomName, setRoomName] = useState(null);
-    const baseUrl = "http://127.0.0.1:8002";
+    const baseUrl = "https://communify.sneaker-street.online";
     const username = useSelector((state) => state.authentication_user.username);
-    const wsBaseUrl = "ws://127.0.0.1:8002/ws/chat/";
+    const wsBaseUrl = "wss://127.0.0.1:8002/ws/chat/";
     const [selectedImage, setSelectedImage] = useState(null);
     const fileInputRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false);

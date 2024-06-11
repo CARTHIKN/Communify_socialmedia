@@ -13,7 +13,7 @@ export default function AdminMenuBar({ setToggle, toggle }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const baseUrl = "http://127.0.0.1:8000";
+  const baseUrl = "https://communify.sneaker-street.online";
 
    const handleToggle = ()=>{
     setToggle(!toggle)

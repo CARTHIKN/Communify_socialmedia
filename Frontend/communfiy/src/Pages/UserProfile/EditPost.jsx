@@ -15,7 +15,7 @@ function EditPost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8001/api/home/post/${postId}/`);
+        const response = await axios.get(`https://communify.sneaker-street.online/api/home/post/${postId}/`);
         setPost(response.data);
         setCaption(response.data.caption);
       } catch (error) {

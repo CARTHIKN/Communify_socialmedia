@@ -11,7 +11,7 @@ const PostUpload = (props) => {
   const [caption, setCaption] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const baseUrl = "http://127.0.0.1:8001";
+  const baseUrl = "https://communify.sneaker-street.online";
 
   const handleCaptionChange = (e) => {
     setCaption(e.target.value);

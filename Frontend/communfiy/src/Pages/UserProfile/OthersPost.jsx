@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 function OthersPost(props) {
   const username = props.friend_username
   const [posts, setPosts] = useState([]);
-  const baseUrl = "http://127.0.0.1:8001";
+  const baseUrl = "https://communify.sneaker-street.online";
 
   useEffect(() => {
     const fetchUserPosts = async () => {

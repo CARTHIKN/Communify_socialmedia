@@ -20,11 +20,11 @@ export default function MenuBar({ setToggle, toggle }) {
 
   const navigate = useNavigate()
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const baseUrl = "http://127.0.0.1:8000";
+  const baseUrl = "https://communify.sneaker-street.online";
 
   useEffect(() => {
     // Establish WebSocket connection
-    const wsUrl = `ws://127.0.0.1:8002/ws/notify/${username}/`;
+    const wsUrl = `wss://communify.sneaker-street.online/ws/notify/${username}/`;
     const ws = new WebSocket(wsUrl);
   
     // Set up event listeners

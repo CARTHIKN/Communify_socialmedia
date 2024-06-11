@@ -14,8 +14,8 @@ export default function SideBar(props) {
   const [chatNotificationCounts, setChatNotificationCounts] = useState(0); 
   const [notificationcount, setNotificationCount] = useState(0)
   const username = useSelector((state) => state.authentication_user.username);
-  const baseUrl3 = "http://127.0.0.1:8002";
-  const baseUrl2 = "http://127.0.0.1:8001";
+  const baseUrl3 = "https://communify.sneaker-street.online";
+  const baseUrl2 = "https://communify.sneaker-street.online";
 
 
   useEffect(() => {
@@ -63,7 +63,7 @@ export default function SideBar(props) {
   
   const markNotificationsAsSeen = async () => {
     try {
-        await axios.post('http://127.0.0.1:8001/api/home/user/mark-notification-as-seen/', {
+        await axios.post('https://communify.sneaker-street.online/api/home/user/mark-notification-as-seen/', {
             username: username 
         });
         setNotificationCount(0); 

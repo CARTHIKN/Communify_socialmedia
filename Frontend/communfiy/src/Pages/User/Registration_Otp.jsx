@@ -7,7 +7,7 @@ function Registration_Otp() {
   const navigate = useNavigate();
   const location = useLocation();
   const [formError, setFormError] = useState([]);
-  const baseUrl = "http://127.0.0.1:8000";
+  const baseUrl = "https://communify.sneaker-street.online";
   const email = location.state?.email;
   const isForChangePassword = location.state?.isForChangePassword;
  

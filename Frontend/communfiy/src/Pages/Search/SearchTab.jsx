@@ -18,7 +18,7 @@ function SearchTab() {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const baseUrl = "http://127.0.0.1:8000";
+    const baseUrl = "https://communify.sneaker-street.online";
     const token = localStorage.getItem("access");
 
     const handleSearch = async (query) => {

@@ -5,7 +5,7 @@ import axios from "axios";
 
 const updateAdminToken = async () => {
     const refreshToken = localStorage.getItem("refresh");
-    const baseUrl = "http://127.0.0.1:8000";
+    const baseUrl = "https://communify.sneaker-street.online";
     try {
         const res = await axios.post(baseUrl + "/api/accounts/token/refresh/", {
             refresh: refreshToken,
@@ -27,7 +27,7 @@ const updateAdminToken = async () => {
 
 const fetchisAdmin = async () => {
     const token = localStorage.getItem("access");
-    const baseUrl = "http://127.0.0.1:8000";
+    const baseUrl = "https://communify.sneaker-street.online";
     try {
         const res = await axios.get(baseUrl + "/api/accounts/user/details/", {
             headers: {

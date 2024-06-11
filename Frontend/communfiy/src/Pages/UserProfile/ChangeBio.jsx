@@ -11,7 +11,7 @@ function ChangeBio() {
   const [bio, setBio] = useState('');
   const [dob, setDob] = useState('');
   const navigate = useNavigate();
-  const baseUrl = 'http://127.0.0.1:8000/';
+  const baseUrl = 'https://communify.sneaker-street.online/';
 
  
 
@@ -40,7 +40,7 @@ function ChangeBio() {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const res = await axios.get(`${baseUrl}/api/accounts/user-profile-picture/${username}/`, {
+        const res = await axios.get(`${baseUrl}api/accounts/user-profile-picture/${username}/`, {
           headers: {
             "Content-Type": "application/json",
           },

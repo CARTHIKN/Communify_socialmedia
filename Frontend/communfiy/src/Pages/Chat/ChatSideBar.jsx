@@ -19,8 +19,8 @@ function ChatSideBar({ selectedUsername, profilePicture, onUserClick, socket,set
 
 
 
-  const baseUrl2 = "http://127.0.0.1:8001";
-  const baseUrl3 = "http://127.0.0.1:8002";
+  const baseUrl2 = "https://communify.sneaker-street.online";
+  const baseUrl3 = "https://communify.sneaker-street.online";
 
   useEffect(() => {
     const fetchChatRooms = async () => {
@@ -33,7 +33,7 @@ function ChatSideBar({ selectedUsername, profilePicture, onUserClick, socket,set
     
           const profilePromises = res.data.map(async (user) => {
             try {
-              const profileRes = await axios.get(`http://127.0.0.1:8000/api/accounts/user-profile-picture/${user.username}`);
+              const profileRes = await axios.get(`https://communify.sneaker-street.online/api/accounts/user-profile-picture/${user.username}`);
               return { ...user, profilePicture: profileRes.data.profile_picture };
             } catch (error) {
               console.error(`Error fetching profile picture for user ${user.username}:`, error);
@@ -139,7 +139,7 @@ function ChatSideBar({ selectedUsername, profilePicture, onUserClick, socket,set
       if (socket!==null){
         socket.close()
       }
-      const wsUrl = `ws://127.0.0.1:8002/ws/chat/${roomName}/${username}/`;
+      const wsUrl = `wss://communify.sneaker-street.online/ws/chat/${roomName}/${username}/`;
       const ws = new WebSocket(wsUrl);
       // setSocket(ws)
   

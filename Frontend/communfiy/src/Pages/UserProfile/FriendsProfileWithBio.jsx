@@ -18,8 +18,8 @@ function FriendsProfileWithBio(props) {
     const [followingCount, setFollowingCount] = useState(0);
     const [postCount, setPostCount] = useState(0);
 
-    const baseUrl = "http://127.0.0.1:8000";
-    const baseUrl2 = "http://127.0.0.1:8001";
+    const baseUrl = "https://communify.sneaker-street.online";
+    const baseUrl2 = "https://communify.sneaker-street.online";
 
 
     const handleFollowClick = async () => {

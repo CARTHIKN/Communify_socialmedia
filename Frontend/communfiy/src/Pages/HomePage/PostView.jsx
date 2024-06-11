@@ -14,7 +14,7 @@ function PostView({ refreshPosts }) {
  const [profileImages, setProfileImages] = useState({}); 
  const [showCommentInput, setShowCommentInput] = useState(null);
  const navigate = useNavigate();
- const baseUrl = 'http://127.0.0.1:8001';
+ const baseUrl = 'https://communify.sneaker-street.online';
  const token = localStorage.getItem("access");
  const [replyToCommentId, setReplyToCommentId] = useState(null); 
  const [replyContent, setReplyContent] = useState(''); 
@@ -173,7 +173,7 @@ const handleReplyClick = async (commentId) => {
 
  const fetchUserProfile = async (username) => {
     try {
-      const userProfileResponse = await axios.get(`http://127.0.0.1:8000/api/accounts/user-profile-picture/${username}`);
+      const userProfileResponse = await axios.get(`https://communify.sneaker-street.online/api/accounts/user-profile-picture/${username}`);
       return userProfileResponse.data.profile_picture;
     } catch (error) {
       console.error('Error fetching user profile:', error);
@@ -320,7 +320,7 @@ const handleCommentReport = async (commentid) => {
 const confirmReport = async () => {
 if (reportType ==='post'){
   try {
-    await axios.post('http://127.0.0.1:8001/api/home/user/post-report/' ,{ post_id : reportPostId, reported_by:username},);
+    await axios.post('https://communify.sneaker-street.online/api/home/user/post-report/' ,{ post_id : reportPostId, reported_by:username},);
     setShowConfirmation(false);
     setReportPostId(null)
     setSuccessMessage('Post reported successfully.');
@@ -332,7 +332,7 @@ if (reportType ==='post'){
   }
 } else if (reportType ==='comment') {
   try {
-    await axios.post('http://127.0.0.1:8001/api/home/user/comment-report/' ,{ comment_id : reportCommentId, reported_by:username},);
+    await axios.post('https://communify.sneaker-street.online/api/home/user/comment-report/' ,{ comment_id : reportCommentId, reported_by:username},);
     setShowConfirmation(false);
     setReportCommentId(null)
     setSuccessMessage('Comment reported successfully.');

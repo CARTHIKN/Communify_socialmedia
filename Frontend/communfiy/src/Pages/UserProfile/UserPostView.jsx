@@ -29,7 +29,7 @@ function UserPostView() {
 
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8001/api/home/post/${postId}/`);
+        const response = await axios.get(`https://communify.sneaker-street.online/api/home/post/${postId}/`);
         setPost(response.data);
       } catch (error) {
         console.error('Error fetching post:', error);
@@ -53,7 +53,7 @@ function UserPostView() {
   useEffect(() => {
     const checkUserLikesPost = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8001/api/home/user/check-user-likes/', {
+        const response = await axios.get('https://communify.sneaker-street.online/api/home/user/check-user-likes/', {
           params: {
             username: username, 
             post_id: postId,
@@ -73,7 +73,7 @@ function UserPostView() {
   useEffect(() => {
     const fetchLikeAndCommentCounts = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8001/api/home/user/like-comments-count/', {
+        const response = await axios.get('https://communify.sneaker-street.online/api/home/user/like-comments-count/', {
           params: {
             post_id: postId,
           },
@@ -97,7 +97,7 @@ function UserPostView() {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://127.0.0.1:8001/api/home/post/${postId}/delete/`);
+      await axios.delete(`https://communify.sneaker-street.online/api/home/post/${postId}/delete/`);
       setShowConfirmation(false); // Hide confirmation modal after successful deletion
       navigate('/user-profile'); // Redirect to user profile after successful deletion
     } catch (error) {
@@ -107,7 +107,7 @@ function UserPostView() {
 
   const handleLike = async () => {
     try {
-        const res = await axios.post('http://127.0.0.1:8001/api/home/user/post/like/', { postId: postId, username:username },);
+        const res = await axios.post('https://communify.sneaker-street.online/api/home/user/post/like/', { postId: postId, username:username },);
         if (res.status === 200 || res.status === 201) {
           setUserLikesPost(!userLikesPost)
            
@@ -124,7 +124,7 @@ function UserPostView() {
 
   const handleComment = async () => {
     try {
-      const mainCommentsResponse = await axios.get(`http://127.0.0.1:8001/api/home/user/comment/${postId}/`);
+      const mainCommentsResponse = await axios.get(`https://communify.sneaker-street.online/api/home/user/comment/${postId}/`);
       let mainCommentsData = mainCommentsResponse.data; // Assuming response.data is not always an array
       
       mainCommentsData = JSON.parse(mainCommentsData);
@@ -132,7 +132,7 @@ function UserPostView() {
       // Now fetch replied comments for each main comment
       const fetchRepliedComments = async () => {
         const promises = mainCommentsData.map(async (mainComment) => {
-          const repliedCommentsResponse = await axios.get(`http://127.0.0.1:8001/api/home/user/comment/replied-comments/?parent_comment_id=${mainComment._id}`);
+          const repliedCommentsResponse = await axios.get(`https://communify.sneaker-street.online/api/home/user/comment/replied-comments/?parent_comment_id=${mainComment._id}`);
           let repliedCommentsData = repliedCommentsResponse.data.replied_comments; // Assuming the response structure
           
           repliedCommentsData = repliedCommentsData;
@@ -154,7 +154,7 @@ function UserPostView() {
   };
   const handleCommentSubmit = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8001/api/home/user/comment/', {
+      const response = await axios.post('https://communify.sneaker-street.online/api/home/user/comment/', {
         username: username,
         post_id: postId,
         content: comment,
@@ -162,7 +162,7 @@ function UserPostView() {
       setComment('');
   
       // Fetch updated main comments
-      const mainCommentsResponse = await axios.get(`http://127.0.0.1:8001/api/home/user/comment/${postId}/`);
+      const mainCommentsResponse = await axios.get(`https://communify.sneaker-street.online/api/home/user/comment/${postId}/`);
       let mainCommentsData = mainCommentsResponse.data; // Assuming response.data is not always an array
       mainCommentsData = JSON.parse(mainCommentsData);
     
@@ -170,7 +170,7 @@ function UserPostView() {
       // Now fetch replied comments for each main comment
       const fetchRepliedComments = async () => {
         const promises = mainCommentsData.map(async (mainComment) => {
-          const repliedCommentsResponse = await axios.get(`http://127.0.0.1:8001/api/home/user/comment/replied-comments/?parent_comment_id=${mainComment._id}`);
+          const repliedCommentsResponse = await axios.get(`https://communify.sneaker-street.online/api/home/user/comment/replied-comments/?parent_comment_id=${mainComment._id}`);
           let repliedCommentsData = repliedCommentsResponse.data.replied_comments; // Assuming the response structure
           repliedCommentsData = repliedCommentsData;
           // Append replied comments to the main comment object
@@ -198,7 +198,7 @@ function UserPostView() {
 
   const handleReplySubmit = async (parent_Username,post_id) => {
     try {
-      const response = await axios.post('http://127.0.0.1:8001/api/home/user/comment/reply/', {
+      const response = await axios.post('https://communify.sneaker-street.online/api/home/user/comment/reply/', {
         username: username,
         parent_comment_id: replyingTo,
         content: replyContent,
@@ -209,7 +209,7 @@ function UserPostView() {
       setReplyingTo(null); // Reset replyingTo state after successful reply
       setReplyContent('');
       // Fetch updated comments after replying
-      const mainCommentsResponse = await axios.get(`http://127.0.0.1:8001/api/home/user/comment/${postId}/`);
+      const mainCommentsResponse = await axios.get(`https://communify.sneaker-street.online/api/home/user/comment/${postId}/`);
       let mainCommentsData = mainCommentsResponse.data; // Assuming response.data is not always an array
       mainCommentsData = JSON.parse(mainCommentsData);
     
@@ -217,7 +217,7 @@ function UserPostView() {
       // Now fetch replied comments for each main comment
       const fetchRepliedComments = async () => {
         const promises = mainCommentsData.map(async (mainComment) => {
-          const repliedCommentsResponse = await axios.get(`http://127.0.0.1:8001/api/home/user/comment/replied-comments/?parent_comment_id=${mainComment._id}`);
+          const repliedCommentsResponse = await axios.get(`https://communify.sneaker-street.online/api/home/user/comment/replied-comments/?parent_comment_id=${mainComment._id}`);
           let repliedCommentsData = repliedCommentsResponse.data.replied_comments; // Assuming the response structure
           repliedCommentsData = repliedCommentsData;
           // Append replied comments to the main comment object

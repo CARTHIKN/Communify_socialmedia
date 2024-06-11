@@ -16,7 +16,7 @@ function AdminPostView() {
     useEffect(() => {
         const fetchPost = async () => {
           try {
-            const response = await axios.get(`http://127.0.0.1:8001/api/home/post/${postId}/`);
+            const response = await axios.get(`https://communify.sneaker-street.online/api/home/post/${postId}/`);
             setPost(response.data);
           } catch (error) {
             console.error('Error fetching post:', error);
@@ -35,8 +35,8 @@ function AdminPostView() {
 
       const confirmDelete = async () => {
         try {
-            await axios.delete(`http://127.0.0.1:8001/api/home/admin/list-reported-posts/${postId}/`);
-          await axios.delete(`http://127.0.0.1:8001/api/home/post/${postId}/delete/`);
+            await axios.delete(`https://communify.sneaker-street.online/api/home/admin/list-reported-posts/${postId}/`);
+          await axios.delete(`https://communify.sneaker-street.online/api/home/post/${postId}/delete/`);
           setShowConfirmation(false); 
           navigate('/admin/post-report');
         } catch (error) {

@@ -7,7 +7,7 @@ function ChangePassword() {
     const [formError, setFormError] = useState([]);
     const location = useLocation();
     const navigate = useNavigate();
-    const baseUrl = "http://127.0.0.1:8000";
+    const baseUrl = "https://communify.sneaker-street.online";
     const email = location.state?.email;
     useEffect(() => {
         // Check if email and isForChangePassword are present
