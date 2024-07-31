@@ -9,7 +9,10 @@ import { useSelector } from "react-redux";
 function AdminLogin() {
   const [formError, setFormError] = useState("");
   const navigate = useNavigate();
-  const baseUrl = "https://communify.sneaker-street.online";
+  const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+  const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+  const baseUrl2 = import.meta.env.VITE_BASE_URL_2
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.authentication_user.isAuthenticated);
   const isAdmin = useSelector((state) => state.authentication_user.isAdmin);
@@ -24,7 +27,7 @@ function AdminLogin() {
     };
 
     try {
-      const res = await axios.post(baseUrl + "/api/accounts/admin/login/", formData, {
+      const res = await axios.post(baseUrl+ "/api/accounts/admin/login/", formData, {
         headers: {
           "Content-Type": "application/json",
         },

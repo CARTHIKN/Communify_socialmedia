@@ -11,12 +11,16 @@ function AdminPostView() {
     const postId = location.pathname.split('/').pop();
     const [post, setPost] = useState(null);
     const [showConfirmation, setShowConfirmation] = useState(false);
+    const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+  const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+  const baseUrl2 = import.meta.env.VITE_BASE_URL_2
 
 
     useEffect(() => {
         const fetchPost = async () => {
           try {
-            const response = await axios.get(`https://communify.sneaker-street.online/api/home/post/${postId}/`);
+            const response = await axios.get(baseUrl + `/api/home/post/${postId}/`);
             setPost(response.data);
           } catch (error) {
             console.error('Error fetching post:', error);
@@ -35,8 +39,8 @@ function AdminPostView() {
 
       const confirmDelete = async () => {
         try {
-            await axios.delete(`https://communify.sneaker-street.online/api/home/admin/list-reported-posts/${postId}/`);
-          await axios.delete(`https://communify.sneaker-street.online/api/home/post/${postId}/delete/`);
+            await axios.delete(baseUrl + `/api/home/admin/list-reported-posts/${postId}/`);
+          await axios.delete(baseUrl+`/api/home/post/${postId}/delete/`);
           setShowConfirmation(false); 
           navigate('/admin/post-report');
         } catch (error) {

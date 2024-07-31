@@ -13,8 +13,10 @@ function ProfileWithBio() {
     const [postCount, setPostCount] = useState(0);
 
 
-    const baseUrl = "https://communify.sneaker-street.online";
-    const baseUrl2 = "https://communify.sneaker-street.online";
+    const baseUrl = import.meta.env.VITE_BASE_URL
+    const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+    const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+    const baseUrl2 = import.meta.env.VITE_BASE_URL_2
 
 
     useEffect(() => {
@@ -36,7 +38,7 @@ function ProfileWithBio() {
 
         const fetchFollowerFollowingCount = async () => {
           try {
-              const res = await axios.get(`${baseUrl2}/api/home/user/friends-count/${username}/`);
+              const res = await axios.get(`${baseUrl}/api/home/user/friends-count/${username}/`);
               if (res.status === 200) {
                   setFollowersCount(res.data.followers_count);
                   setFollowingCount(res.data.following_count);

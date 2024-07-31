@@ -18,20 +18,22 @@ function FriendsProfileWithBio(props) {
     const [followingCount, setFollowingCount] = useState(0);
     const [postCount, setPostCount] = useState(0);
 
-    const baseUrl = "https://communify.sneaker-street.online";
-    const baseUrl2 = "https://communify.sneaker-street.online";
+    const baseUrl = import.meta.env.VITE_BASE_URL
+    const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+    const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+    const baseUrl2 = import.meta.env.VITE_BASE_URL_2
 
 
     const handleFollowClick = async () => {
         try {
             let res;
             if (isFollowing) {
-                res = await axios.post(`${baseUrl2}/api/home/user/unfollow/`, {
+                res = await axios.post(`${baseUrl}/api/home/user/unfollow/`, {
                     username: username,
                     friend_username: friend_username
                 });
             } else {
-                res = await axios.post(`${baseUrl2}/api/home/user/follow/`, {
+                res = await axios.post(`${baseUrl}/api/home/user/follow/`, {
                     username: username,
                     friend_username: friend_username
                 });
@@ -46,7 +48,7 @@ function FriendsProfileWithBio(props) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`${baseUrl2}/api/home/user/check-following/${username}/${friend_username}`);
+                const res = await axios.get(`${baseUrl}/api/home/user/check-following/${username}/${friend_username}`);
                 if (res.status === 200) {
                     setIsFollowing(res.data.is_following);
                 }
@@ -80,7 +82,7 @@ function FriendsProfileWithBio(props) {
 
         const fetchFollowerFollowingCount = async () => {
             try {
-                const res = await axios.get(`${baseUrl2}/api/home/user/friends-count/${friend_username}/`);
+                const res = await axios.get(`${baseUrl}/api/home/user/friends-count/${friend_username}/`);
                 if (res.status === 200) {
                     setFollowersCount(res.data.followers_count);
                     setFollowingCount(res.data.following_count);

@@ -18,7 +18,10 @@ function SearchTab() {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const baseUrl = "https://communify.sneaker-street.online";
+    const baseUrl = import.meta.env.VITE_BASE_URL
+    const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+    const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+    const baseUrl2 = import.meta.env.VITE_BASE_URL_2
     const token = localStorage.getItem("access");
 
     const handleSearch = async (query) => {

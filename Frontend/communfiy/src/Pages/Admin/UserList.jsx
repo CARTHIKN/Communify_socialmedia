@@ -5,7 +5,10 @@ function UserList() {
     const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1); // Track current page
     const pageSize = 10; // Number of users per page
-    const baseUrl = "https://communify.sneaker-street.online";
+    const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+  const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+  const baseUrl2 = import.meta.env.VITE_BASE_URL_2
 
     useEffect(() => {
         const fetchUsers = async () => {

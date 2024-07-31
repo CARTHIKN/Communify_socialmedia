@@ -5,12 +5,16 @@ function CommentReportList() {
     const [reportedComments, setReportedComments] = useState([]);
     const [deleteCommentId, setDeleteCommentId] = useState(null)
     const [showConfirmation, setShowConfirmation] = useState(false);
+    const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+  const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+  const baseUrl2 = import.meta.env.VITE_BASE_URL_2
 
 
     useEffect(() => {
         const fetchReportedComments = async () => {
             try {
-                const response = await axios.get('https://communify.sneaker-street.online/api/home/admin/list-reported-comments/');
+                const response = await axios.get(baseUrl+'/api/home/admin/list-reported-comments/');
                 setReportedComments(response.data);
             } catch (error) {
                 console.error('Error fetching reported comments:', error);
@@ -31,7 +35,7 @@ function CommentReportList() {
 
     const confirmDelete = async () => {
         try {
-            await axios.delete(`https://communify.sneaker-street.online/api/home/admin/list-reported-comments/${deleteCommentId}/delete/`);
+            await axios.delete(baseUrl+`/api/home/admin/list-reported-comments/${deleteCommentId}/delete/`);
             setReportedComments(reportedComments.filter(comment => comment.comment_id !== deleteCommentId));
             setDeleteCommentId(null)
             setShowConfirmation(false)

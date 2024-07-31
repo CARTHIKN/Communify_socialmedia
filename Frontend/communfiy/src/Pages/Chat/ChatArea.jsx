@@ -7,9 +7,12 @@
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState('');
     const [roomName, setRoomName] = useState(null);
-    const baseUrl = "https://communify.sneaker-street.online";
+    const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+  const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+  const baseUrl2 = import.meta.env.VITE_BASE_URL_2
     const username = useSelector((state) => state.authentication_user.username);
-    const wsBaseUrl = "wss://127.0.0.1:8002/ws/chat/";
+    const wsBaseUrl = "ws://127.0.0.1:8002/ws/chat/";
     const [selectedImage, setSelectedImage] = useState(null);
     const fileInputRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -51,7 +54,7 @@
           setIsLoading(false);
         }
         if (content.trim() !== '') {
-          sendMessage(content, selectedImage ? 'media' : 'text'); // Send message or image link with appropriate m_type
+          sendMessage(content, selectedImage ? 'media' : 'text');
         } else {
           console.warn('Message or image content is empty.');
         }
@@ -87,6 +90,7 @@
             m_type: m_type,
           };
           console.log(data);
+
           socket.send(JSON.stringify(data));
           setMessage('');
           // fetchChatRooms();

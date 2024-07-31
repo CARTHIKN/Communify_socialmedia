@@ -7,7 +7,10 @@ function ChangePassword() {
     const [formError, setFormError] = useState([]);
     const location = useLocation();
     const navigate = useNavigate();
-    const baseUrl = "https://communify.sneaker-street.online";
+    const baseUrl = import.meta.env.VITE_BASE_URL
+    const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+    const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+    const baseUrl2 = import.meta.env.VITE_BASE_URL_2
     const email = location.state?.email;
     useEffect(() => {
         // Check if email and isForChangePassword are present

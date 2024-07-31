@@ -7,7 +7,10 @@ function Registration_Otp() {
   const navigate = useNavigate();
   const location = useLocation();
   const [formError, setFormError] = useState([]);
-  const baseUrl = "https://communify.sneaker-street.online";
+  const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+  const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+  const baseUrl2 = import.meta.env.VITE_BASE_URL_2
   const email = location.state?.email;
   const isForChangePassword = location.state?.isForChangePassword;
  

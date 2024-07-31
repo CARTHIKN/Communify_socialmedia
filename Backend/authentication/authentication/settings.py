@@ -37,7 +37,8 @@ ALLOWED_HOSTS = [
     'localhost:80',
     'localhost:5173',
     'communify.sneaker-street.online',
-    '15.206.59.182'
+    '15.206.59.182',
+    '13.201.191.85'
 ]
 
 # Application definition
@@ -187,8 +188,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://authentication:8000',
     'https://communify.sneaker-street.online',
     'http://communify.sneaker-street.online',
-    'http://15.206.59.182',
-    'https://15.206.59.182'
+    'http://13.201.191.85',
+    'https://13.201.191.85'
 ]
 
 

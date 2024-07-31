@@ -14,8 +14,11 @@ export default function SideBar(props) {
   const [chatNotificationCounts, setChatNotificationCounts] = useState(0); 
   const [notificationcount, setNotificationCount] = useState(0)
   const username = useSelector((state) => state.authentication_user.username);
-  const baseUrl3 = "https://communify.sneaker-street.online";
-  const baseUrl2 = "https://communify.sneaker-street.online";
+  const baseUrl3 = import.meta.env.VITE_BASE_URL
+  const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+  const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+  const baseUrl2 = import.meta.env.VITE_BASE_URL_2
 
 
   useEffect(() => {
@@ -30,7 +33,7 @@ export default function SideBar(props) {
     const fetchData = async () => {
       try {
         
-        const response = await axios.get(baseUrl2 + '/api/home/user/notification-count/', {
+        const response = await axios.get(baseUrl+ '/api/home/user/notification-count/', {
           params: {
             username: username
           }
@@ -47,7 +50,7 @@ export default function SideBar(props) {
 
   useEffect(() => {
     try {
-      axios.get(`${baseUrl3}/api/chat/all-unseen-messages/${username}/`)
+      axios.get(`${baseUrl}/api/chat/all-unseen-messages/${username}/`)
         .then((res) => {
           if (res.status === 200) {
             setChatNotificationCounts(res.data);
@@ -63,7 +66,7 @@ export default function SideBar(props) {
   
   const markNotificationsAsSeen = async () => {
     try {
-        await axios.post('https://communify.sneaker-street.online/api/home/user/mark-notification-as-seen/', {
+        await axios.post(baseUrl+'/api/home/user/mark-notification-as-seen/', {
             username: username 
         });
         setNotificationCount(0); 

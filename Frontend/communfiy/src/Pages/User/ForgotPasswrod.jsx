@@ -6,7 +6,10 @@ function ForgotPasswrod() {
 
   const [formError, setFormError] = useState([]);
   const navigate = useNavigate();
-  const baseUrl = "https://communify.sneaker-street.online";
+  const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+  const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+  const baseUrl2 = import.meta.env.VITE_BASE_URL_2
 
 
   const handleSubmit = async (event) => {
@@ -17,7 +20,7 @@ function ForgotPasswrod() {
     };
 
     try {
-      const res = await axios.post(baseUrl + "/api/accounts/forgotpassword/", formData, {
+      const res = await axios.post(baseUrl+ "/api/accounts/forgotpassword/", formData, {
         headers: {
           "Content-Type": "application/json",
         },

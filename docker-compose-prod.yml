@@ -1,111 +1,111 @@
-# version: '3.7'
+version: '3.7'
 
-# services:
-#   db:
-#     image: postgres:latest
-#     environment:
-#       - POSTGRES_USER=karthikeyan
-#       - POSTGRES_PASSWORD=1920
-#       - POSTGRES_DB=communify_auth
-#     ports:
-#       - "5432:5432"
+services:
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=karthikeyan
+      - POSTGRES_PASSWORD=1920
+      - POSTGRES_DB=communify_auth
+    ports:
+      - "5432:5432"
 
-#   dbchat:
-#     image: postgres:latest
-#     environment:
-#       - POSTGRES_USER=karthikeyan
-#       - POSTGRES_PASSWORD=1920
-#       - POSTGRES_DB=communify_chat
-#     ports:
-#       - "5434:5432"
+  dbchat:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=karthikeyan
+      - POSTGRES_PASSWORD=1920
+      - POSTGRES_DB=communify_chat
+    ports:
+      - "5434:5432"
 
-#   redis:
-#     image: "redis:alpine"
-#     ports:
-#       - "6379:6379"
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
 
-#   daphne:
-#     image: karthikeyan2002/chat:latest
-#     command: bash -c "daphne -b 0.0.0.0 -p 8002 chatapp.asgi:application"
-#     ports:
-#       - "8002:8002"
-#     depends_on:
-#       - redis
-#       - chatapp
+  daphne:
+    image: karthikeyan2002/daphne:v6
+    command: bash -c "daphne -b 0.0.0.0 -p 8002 chatapp.asgi:application"
+    ports:
+      - "8002:8002"
+    depends_on:
+      - redis
+      - chatapp
 
-#   authentication:
-#     image: karthikeyan2002/communify-authentication:latest
-#     volumes:
-#       - static_authentication:/static
-#     env_file:
-#       - .env
-#     ports:
-#       - "8000:8000"
-#     command: 'python manage.py migrate'
-#     depends_on:
-#       - frontend
-#       - db
+  authentication:
+    image: karthikeyan2002/communify-authentication:v6
+    volumes:
+      - static_authentication:/static
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    command: 'python manage.py migrate'
+    depends_on:
+      - frontend
+      - db
 
-#   chat:
-#     image: karthikeyan2002/communify-chat:latest
-#     volumes:
-#       - static_chatapp:/static
-#     env_file:
-#       - .env
-#     command: python -u consumer.py
-#     depends_on:
-#       - redis
-#       - dbchat
-#       - db
+  chat:
+    image: karthikeyan2002/communify-chat:vs
+    volumes:
+      - static_chatapp:/static
+    env_file:
+      - .env
+    command: python -u consumer.py
+    depends_on:
+      - redis
+      - dbchat
+      - db
 
-#   userside:
-#     image: karthikeyan2002/communify-userside:latest
-#     volumes:
-#       - static_userside:/static
-#     env_file:
-#       - .env
-#     ports:
-#       - "8001:8001"
+  userside:
+    image: karthikeyan2002/communify-userside:latest
+    volumes:
+      - static_userside:/static
+    env_file:
+      - .env
+    ports:
+      - "8001:8001"
 
-#   frontend:
-#     image: karthikeyan2002/communify-frontend:latest
-#     volumes:
-#       - frontend:/app/build
-#     ports:
-#       - "3000:3000"
-#     environment:
-#       - watchpack_polling=true
+  frontend:
+    image: karthikeyan2002/communify-frontend:latest
+    volumes:
+      - frontend:/app/build
+    ports:
+      - "3000:3000"
+    environment:
+      - watchpack_polling=true
 
-#   celery:
-#     image: karthikeyan2002/communify-celery:latest
-#     depends_on:
-#       - redis
+  celery:
+    image: karthikeyan2002/communify-celery:latest
+    depends_on:
+      - redis
 
-#   nginx:
-#     image: karthikeyan2002/communify-nginx:latest
-#     restart: unless-stopped
-#     volumes:
-#       - frontend:/var/www/frontend
-#       - ./nginx/default.conf:/etc/nginx/nginx.conf
-#       - ./certbot/conf:/etc/letsencrypt
-#       - ./certbot/www:/var/www/certbot
-#     ports:
-#       - "80:80"
-#       - "443:443"
-#     depends_on:
-#       - frontend
-#       - daphne
-#       - chat
-#       - userside
-#       - authentication
+  nginx:
+    image: karthikeyan2002/communify-nginx:latest
+    restart: unless-stopped
+    volumes:
+      - frontend:/var/www/frontend
+      - ./nginx/default.conf:/etc/nginx/nginx.conf
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - frontend
+      - daphne
+      - chat
+      - userside
+      - authentication
 
-#   mongodb:
-#     image: mongo
-#     ports:
-#       - "27017:27017"
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
 
-# volumes:
-#   static_userside:
-#   static_authentication:
-#   static_chatapp:
-#   frontend:
+volumes:
+  static_userside:
+  static_authentication:
+  static_chatapp:
+  frontend:

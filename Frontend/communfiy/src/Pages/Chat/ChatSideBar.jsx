@@ -16,24 +16,29 @@ function ChatSideBar({ selectedUsername, profilePicture, onUserClick, socket,set
   const [roomName, setRoomName] = useState(null);
   const [sockett, setSockett] = useState(null);
   const [unseenMessages, setUnseenMessages] = useState({});
+  
 
 
 
-  const baseUrl2 = "https://communify.sneaker-street.online";
-  const baseUrl3 = "https://communify.sneaker-street.online";
+  const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+  const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+  const baseUrl2 = import.meta.env.VITE_BASE_URL_2
+  const wsBaseUrl = 'communify.sneaker-street.online';
+  // const baseUrl3 = "https://communify.sneaker-street.online";
 
   useEffect(() => {
     const fetchChatRooms = async () => {
       const formData = { username: username };
       try {
-        const res = await axios.post(baseUrl3 + '/api/chat/chatrooms/', formData);
+        const res = await axios.post(baseUrl + '/api/chat/chatrooms/', formData);
     
         if (res.status === 200) {
           setChatRooms(res.data);
     
           const profilePromises = res.data.map(async (user) => {
             try {
-              const profileRes = await axios.get(`https://communify.sneaker-street.online/api/accounts/user-profile-picture/${user.username}`);
+              const profileRes = await axios.get(baseUrl+`/api/accounts/user-profile-picture/${user.username}`);
               return { ...user, profilePicture: profileRes.data.profile_picture };
             } catch (error) {
               console.error(`Error fetching profile picture for user ${user.username}:`, error);
@@ -52,7 +57,7 @@ function ChatSideBar({ selectedUsername, profilePicture, onUserClick, socket,set
           // Fetch unseen messages for each room
           const unseenMessagesPromises = res.data.map(async (room) => {
             try {
-              const unseenRes = await axios.get(baseUrl3 + `/api/chat/unseen-messages/?roomid=${room.room_id}&username=${username}`);
+              const unseenRes = await axios.get(baseUrl+ `/api/chat/unseen-messages/?roomid=${room.room_id}&username=${username}`);
               return { roomId: room.room_id, count: unseenRes.data.count };
             } catch (error) {
               console.error(`Error fetching unseen messages for room ${room.room_id}:`, error);
@@ -76,7 +81,7 @@ function ChatSideBar({ selectedUsername, profilePicture, onUserClick, socket,set
 
     fetchChatRooms();
     
-  }, [baseUrl3, username,socket, trigger,chatNotificationCount]);
+  }, [baseUrl, username,socket, trigger,chatNotificationCount]);
 
 
 
@@ -88,7 +93,7 @@ function ChatSideBar({ selectedUsername, profilePicture, onUserClick, socket,set
         const lastMessagesData = await Promise.all(
           roomIds.map(async roomId => {
             try {
-              const res = await axios.get(baseUrl3 + `/api/chat/lastmessage/?roomid=${roomId}`);
+              const res = await axios.get(baseUrl+ `/api/chat/lastmessage/?roomid=${roomId}`);
               return { roomId, message: res.data.content };
             } catch (error) {
               console.error(`Error fetching last message for room ${roomId}:`, error);
@@ -109,11 +114,11 @@ function ChatSideBar({ selectedUsername, profilePicture, onUserClick, socket,set
     };
   
     fetchLastMessages();
-  }, [baseUrl3, chatrooms]);
+  }, [baseUrl, chatrooms]);
 
   const fetchRoom = async (username2) => {
     try {
-      const res = await axios.get(baseUrl3 + '/api/chat/findroom/', {
+      const res = await axios.get(baseUrl + '/api/chat/findroom/', {
         params: {
           user1: username,
           user2: username2,
@@ -141,6 +146,7 @@ function ChatSideBar({ selectedUsername, profilePicture, onUserClick, socket,set
       }
       const wsUrl = `wss://communify.sneaker-street.online/ws/chat/${roomName}/${username}/`;
       const ws = new WebSocket(wsUrl);
+      
       // setSocket(ws)
   
       ws.onopen = () => {

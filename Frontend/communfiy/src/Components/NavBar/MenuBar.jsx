@@ -20,7 +20,13 @@ export default function MenuBar({ setToggle, toggle }) {
 
   const navigate = useNavigate()
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const baseUrl = "https://communify.sneaker-street.online";
+  const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+  const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+  const baseUrl2 = import.meta.env.VITE_BASE_URL_2
+  // const wsBaseUrl = 
+
+
 
   useEffect(() => {
     // Establish WebSocket connection
@@ -136,7 +142,7 @@ export default function MenuBar({ setToggle, toggle }) {
                 ></path>
               </svg>
             </button>
-            <a href="/" className="flex ms-2 md:me-24">
+            <a href="/home" className="flex ms-2 md:me-24">
               {/* <img
                 src="https://flowbite.com/docs/images/logo.svg"
                 className="h-8 me-3"
@@ -174,8 +180,8 @@ export default function MenuBar({ setToggle, toggle }) {
                   </div>
                   <ul className="py-1" role="none">
                     <li>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
-                        <Link to="/user-profile">Profile</Link>
+                      <a href="/user-profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                        Profile
                       </a>
                     </li>
                     <li>

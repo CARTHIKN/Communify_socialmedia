@@ -5,7 +5,10 @@ import { useSelector } from 'react-redux';
 function OthersPost(props) {
   const username = props.friend_username
   const [posts, setPosts] = useState([]);
-  const baseUrl = "https://communify.sneaker-street.online";
+  const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+  const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+  const baseUrl2 = import.meta.env.VITE_BASE_URL_2
 
   useEffect(() => {
     const fetchUserPosts = async () => {

@@ -10,12 +10,16 @@ const NotificationList = () => {
     const { showNotification } = useChatNotification();
     const username = useSelector((state) => state.authentication_user.username);
 
-    const baseUrl1 = "https://communify.sneaker-street.online";
+   
+    const baseUrl = import.meta.env.VITE_BASE_URL
+    const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+    const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+    const baseUrl2 = import.meta.env.VITE_BASE_URL_2
 
     useEffect(() => {
         const fetchNotifications = async () => {
             try {
-                const response = await axios.get(baseUrl1 + '/api/home/user/all-notification/', {
+                const response = await axios.get(baseUrl + '/api/home/user/all-notification/', {
                     params: {
                         username: username
                     }
@@ -32,7 +36,7 @@ const NotificationList = () => {
     }, [showNotification]);
     const markNotificationsAsSeen = async () => {
         try {
-            await axios.post('https://communify.sneaker-street.online/api/home/user/mark-notification-as-seen/', {
+            await axios.post( baseUrl + '/api/home/user/mark-notification-as-seen/', {
                 username: username
             });
              // Update the notification count locally

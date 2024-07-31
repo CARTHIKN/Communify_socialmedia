@@ -15,7 +15,10 @@ function ChangeProfile() {
 
   const navigate = useNavigate()
   const dispatch = useDispatch();
-  const baseUrl = "https://communify.sneaker-street.online";
+  const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+  const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+  const baseUrl2 = import.meta.env.VITE_BASE_URL_2
   const username = useSelector((state) => state.authentication_user.username);
   const handleImageChange = (event) => {
     

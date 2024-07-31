@@ -10,12 +10,16 @@ function EditPost() {
   const [toggle, setToggle] = useState(false);
   const [post, setPost] = useState(null);
   const [caption, setCaption] = useState('');
+  const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+  const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+  const baseUrl2 = import.meta.env.VITE_BASE_URL_2
 
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`https://communify.sneaker-street.online/api/home/post/${postId}/`);
+        const response = await axios.get(baseUrl+`/api/home/post/${postId}/`);
         setPost(response.data);
         setCaption(response.data.caption);
       } catch (error) {
@@ -41,7 +45,7 @@ function EditPost() {
   const handleSubmit = async () => {
     try {
       // Example POST request to update the post with the new caption
-      const response = await axios.put(`http://127.0.0.1:8001/api/home/post/${post._id}/update/`, {
+      const response = await axios.put(baseUrl+`/api/home/post/${post._id}/update/`, {
         caption: caption,
       });
       navigate(`/user/post/${post._id}`); // Redirect to the post view page after editing

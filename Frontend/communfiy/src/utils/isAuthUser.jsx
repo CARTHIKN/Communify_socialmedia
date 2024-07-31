@@ -9,9 +9,12 @@ import axios from 'axios'
 const updateUserToken = async ()=>{
   
     const refreshToken = localStorage.getItem("refresh");
-    const baseURL='https://communify.sneaker-street.online'
+    const baseUrl = import.meta.env.VITE_BASE_URL
+    const baseUrl0 =  import.meta.env.VITE_BASE_URL_0
+    const baseUrl1 = import.meta.env.VITE_BASE_URL_1
+    const baseUrl2 = import.meta.env.VITE_BASE_URL_2
     try {
-        const res = await axios.post(baseURL+'/api/accounts/token/refresh/', 
+        const res = await axios.post(baseUrl+'/api/accounts/token/refresh/', 
         {
             'refresh':refreshToken
         })
